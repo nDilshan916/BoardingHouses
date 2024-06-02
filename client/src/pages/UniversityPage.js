@@ -21,12 +21,47 @@ function UniversityPage() {
         `http://localhost:5000/api/BoardingHouse/university/${encodeURIComponent(university.name)}`
       );
       console.log("Fetched boardings:", response.data);
-      setBoardings(response.data);
+
+      // Fetch reviews for each boarding house
+      const boardingsWithReviews = await Promise.all(
+        response.data.map(async (bh) => {
+          const reviewResponse = await axios.get(
+            `http://localhost:5000/api/reviews/boardingHouse/${bh._id}`
+          );
+          return { ...bh, reviews: reviewResponse.data };
+        })
+      );
+
+      setBoardings(boardingsWithReviews);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-   
+
+  const calculateAverageRating = (ratings) => {
+    if (!ratings || ratings.length === 0) return 0;
+    const total = ratings.reduce((acc, rating) => acc + rating, 0);
+    return total / ratings.length;
+  };
+
+  const renderStars = (averageRating) => {
+    const filledStars = Math.round(averageRating);
+    const emptyStars = 5 - filledStars;
+    return (
+      <>
+        {[...Array(filledStars)].map((_, index) => (
+          <span key={index} className="text-yellow-400 text-lg">
+            ★
+          </span>
+        ))}
+        {[...Array(emptyStars)].map((_, index) => (
+          <span key={index} className="text-gray-300 text-lg">
+            ☆
+          </span>
+        ))}
+      </>
+    );
+  };
 
   return (
     <div className="p-4 bg-gray-50 min-h-screen">
@@ -58,7 +93,7 @@ function UniversityPage() {
                   to={`/boarding/${bh._id}`}
                   className="no-underline text-gray-900"
                 >
-                  <h3 className="text-xl font-bold mb-2  text-blue-600  hover:text-black">
+                  <h3 className="text-xl font-bold mb-2 text-blue-600 hover:text-black">
                     {bh.name}
                   </h3>
                 </Link>
@@ -66,14 +101,12 @@ function UniversityPage() {
                   Distance: {bh.distance} km from {university.name}
                 </p>
                 <p className="text-sm text-gray-700 mb-3">{bh.description}</p>
-                {/* Placeholder for review system */}
                 <div className="flex items-center">
                   <span className="text-yellow-400 text-lg">
-                    {/* Simple static star icons for illustration */}
-                    ★★★★☆
+                    {renderStars(calculateAverageRating(bh.reviews?.map(review => review.rating)))}
                   </span>
                   <span className="ml-2 text-sm text-gray-600">
-                    (200 reviews)
+                    ({bh.reviews ? bh.reviews.length : 0} reviews)
                   </span>
                 </div>
               </div>
