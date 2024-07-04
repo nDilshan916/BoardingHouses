@@ -102,6 +102,7 @@ const ChatToHolder = () => {
       </div>
     </div>
   );
+  
 };
 
 export default ChatToHolder;
