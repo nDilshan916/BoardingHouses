@@ -1,0 +1,70 @@
+/* General styles */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* University page styles */
+.university-page {
+  padding: 20px;
+}
+
+.university-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.university-not-found {
+  text-align: center;
+  color: #ccc;
+}
+
+/* Boarding house list styles */
+.boarding-houses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Individual boarding house styles */
+.boarding-house {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.boarding-house-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.boarding-house:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boarding-house-image {
+  width: 100%;
+  height: 150px; /* Adjust height as needed */
+  object-fit: cover; /* Scales image to fit container */
+  margin-bottom: 10px;
+}
+
+.boarding-house-name {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+/* No boarding houses found message */
+.no-boarding-houses {
+  text-align: center;
+}

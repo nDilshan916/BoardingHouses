@@ -1,0 +1,70 @@
+.h-wrapper {
+  z-index: 99;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.h-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: var(--secondary);
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+}
+
+.h-menu {
+  gap: 2rem;
+}
+
+.h-menu > *:hover {
+  cursor: pointer;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+  .h-menu {
+    color: var(--black);
+    position: absolute;
+    gap: 2rem;
+    font-weight: 500;
+    flex-direction: column;
+    right: 4rem;
+    top: 3rem;
+    background: white;
+    display: flex;
+    border-radius: 10px;
+    transition: all 200ms ease;
+    align-items: flex-start;
+    padding: 3rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Remove text underline */
+a.no-underline {
+  text-decoration: none;
+}
+
+/* Custom button styling */
+.button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  outline: inherit;
+}

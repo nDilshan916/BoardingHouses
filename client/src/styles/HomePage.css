@@ -1,0 +1,32 @@
+/* HomePage.css */
+.home-page {
+  text-align: center;
+  padding: 20px;
+}
+
+.university-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.university {
+  border: 1px solid #ccc;
+  padding: 50px;
+  border-radius: 8px;
+  width: 200px;
+  height: 300px;
+  text-align: center;
+}
+
+.university img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.university h2 {
+  font-size: 1.2rem;
+  color: #333;
+}
